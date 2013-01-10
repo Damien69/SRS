@@ -1,0 +1,25 @@
+srs_event_index:
+    pattern:  /
+    defaults: { _controller: SrsEventBundle:Event:index, page: 1 }
+
+srs_event_show:
+    pattern:   /{id}
+    defaults:  { _controller: SrsEventBundle:Event:show}
+    requirements:
+        page:  \d+
+
+srs_event_remove:
+    pattern:   /delete/{id}
+    defaults:  { _controller: SrsEventBundle:Event:remove}
+    requirements:
+        page:  \d+
+
+srs_event_add:
+    pattern:   /add/
+    defaults:  { _controller: SrsEventBundle:Event:add}
+
+srs_event_modify:
+    pattern:   /modify/{id}
+    defaults:  { _controller: SrsEventBundle:Event:modify}
+    requirements:
+        page:  \d+

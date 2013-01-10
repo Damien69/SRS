@@ -1,0 +1,3 @@
+srs_home_homepage:
+    pattern:  /
+    defaults: { _controller: SrsHomeBundle:Home:index }

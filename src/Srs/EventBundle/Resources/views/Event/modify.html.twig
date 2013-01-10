@@ -1,0 +1,27 @@
+{% extends "SrsEventBundle::layout.html.twig" %}
+
+{% block title %}
+	Modification d'un event - {{ parent() }}
+{% endblock %}
+
+{% block srsevent_body %}
+
+	<h2>Modification d'un event</h2>
+
+	{% include "SrsEventBundle:Form:formulaire.html.twig" %}
+
+	<p>
+		Vous éditez un event déjà existant,
+		ne le changez pas trop pour éviter
+		aux membres de ne pas comprendre
+		ce qu'il se passe.
+	</p>
+
+	<p>
+		<a href="{{ path('srs_event_show', {'id': event.id}) }}" class="btn">
+			<i class="icon-chevron-left"></i>
+			Retour à l'event
+		</a>
+	</p>
+
+{% endblock %}

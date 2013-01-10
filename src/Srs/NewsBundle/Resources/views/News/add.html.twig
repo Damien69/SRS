@@ -1,0 +1,18 @@
+{% extends "SrsNewsBundle::layout.html.twig" %}
+
+{% block title %}
+	Ajout d'une news - {{ parent() }}
+{% endblock %}
+
+{% block srsnews_body %}
+
+	<h2>Ajout d'une news</h2>
+
+	{% include "SrsNewsBundle:Form:formulaire.html.twig" %}
+
+	<p>
+		Attention : cet article sera ajouté directement
+		sur la page d'accueil après validation du formulaire.
+	</p>
+
+{% endblock %}

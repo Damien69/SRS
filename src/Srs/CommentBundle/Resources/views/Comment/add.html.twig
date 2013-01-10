@@ -1,0 +1,13 @@
+{% extends "SrsCommentBundle::layout.html.twig" %}
+
+{% block title %}
+	Ajout d'un commentaire - {{ parent() }}
+{% endblock %}
+
+{% block srsnews_body %}
+
+	<h2>Ajout d'un commentaire</h2>
+
+	{% include "SrsCommentBundle:Form:formulaire.html.twig" %}
+
+{% endblock %}

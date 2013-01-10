@@ -1,0 +1,3 @@
+srs_comment_add:
+    pattern:  /add/
+    defaults: { _controller: SrsCommentBundle:Comment:add }

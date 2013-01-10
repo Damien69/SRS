@@ -1,0 +1,25 @@
+{% extends "SrsNewsBundle::layout.html.twig" %}
+
+{% block title %}
+	Recherche - {{ parent() }}
+{% endblock %}
+
+{% block srsnews_body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for news in tags.news %}
+            <tr>
+                <td><a href="">{{ news.title }}</a></td>
+                <td>{{ news.body | truncate(150, true, '...') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

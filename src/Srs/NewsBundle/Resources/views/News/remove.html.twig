@@ -1,0 +1,26 @@
+{% extends "SrsNewsBundle::layout.html.twig" %}
+
+{% block title %}
+	Suppression d'une News - {{ parent() }}
+{% endblock %}
+
+{% block srsnews_body %}
+
+	<h2>Suppression d'un news</h2>
+
+	<p>
+		Etes-vous sûr de vouloir supprimer la news "{{ news.title }}" ?
+	</p>
+
+	<form method="post">
+		<input type="submit" value="Oui" class="btn-danger" />
+	</form>
+
+	<p>
+		<a href="{{ path('srs_news_show', {'id': news.id}) }}" class="btn">
+			<i class="icon-chevron-left"></i>
+			Retour à la news
+		</a>
+	</p>
+
+{% endblock %}

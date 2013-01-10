@@ -1,0 +1,25 @@
+{% extends "SrsNewsBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block srsnews_body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in news %}
+            <tr>
+                <td><a href="{{ path ('srs_news_show', {'id': entity.id}) }}">{{ entity.title }}</a></td>
+                <td>{{ entity.body | truncate(150, true, '...') }}</td>
+            </tr>
+        {% endfor %}        
+        </tbody>
+    </table>
+{% endblock %}

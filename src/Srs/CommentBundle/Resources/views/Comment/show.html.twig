@@ -1,0 +1,27 @@
+{% extends "SrsNewsBundle::layout.html.twig" %}
+{% block title %}
+    Lecture d'une news - {{ parent() }}
+{% endblock %}
+{% block srsnews_body %}
+    <h2>{{ news.title }}</h2>
+    <i>Par {{ news.autor }}, le {% if news.dateModification %}{{ news.dateModification|date('Y-m-d H:i:s') }} {% else %} {{ news.dateModification|date('Y-m-d H:i:s') }} {% endif%}</i>
+    
+    <div class="well">
+        {{ news.body }}
+    </div>
+    <p>
+        <a href="{{ path('srs_news_index') }}" class="btn"><i class="icon-chevron-left"></i></a>
+        <a href="{{ path('srs_news_modify', {'id': news.id }) }}" class="btn"><i class="icon-edit"></i></a>
+        <a href=" {{ path('srs_news_remove', {'id': news.id }) }}" class="btn"><i class="icon-trash"></i></a>
+    </p>
+    <p>
+        {% for tag in news.tag %}
+            <a style="margin-top: 5px;" href="{{ path('srs_tag_index', {'name': tag.name }) }}" class="btn btn-info"><i>{{tag.name}}</i></a>
+        {% endfor %}
+    </p>
+    
+    {# include "SrsCommentBundle:Form:formulaire.html.twig" #}
+{% endblock %}
+    
+    
+

@@ -1,0 +1,31 @@
+srs_news_index:
+    pattern:  /
+    defaults: { _controller: SrsNewsBundle:News:index, page: 1 }
+
+srs_news_show:
+    pattern:   /{id}
+    defaults:  { _controller: SrsNewsBundle:News:show}
+    requirements:
+        page:  \d+
+
+srs_news_remove:
+    pattern:   /delete/{id}
+    defaults:  { _controller: SrsNewsBundle:News:remove}
+    requirements:
+        page:  \d+
+
+srs_news_add:
+    pattern:   /add/
+    defaults:  { _controller: SrsNewsBundle:News:add}
+
+srs_news_modify:
+    pattern:   /modify/{id}
+    defaults:  { _controller: SrsNewsBundle:News:modify}
+    requirements:
+        page:  \d+
+
+srs_news_search:
+    pattern:   /search/{label}
+    defaults:  { _controller: SrsNewsBundle:News:search}
+    requirements:
+        page:  \s

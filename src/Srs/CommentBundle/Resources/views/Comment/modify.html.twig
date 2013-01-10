@@ -1,0 +1,27 @@
+{% extends "SrsNewsBundle::layout.html.twig" %}
+
+{% block title %}
+	Modification d'une news - {{ parent() }}
+{% endblock %}
+
+{% block srsnews_body %}
+
+	<h2>Modification d'une news</h2>
+
+	{% include "SrsNewsBundle:Form:formulaire.html.twig" %}
+
+	<p>
+		Vous éditez une news déjà existant,
+		ne le changez pas trop pour éviter
+		aux membres de ne pas comprendre
+		ce qu'il se passe.
+	</p>
+
+	<p>
+		<a href="{{ path('srs_news_show', {'id': news.id}) }}" class="btn">
+			<i class="icon-chevron-left"></i>
+			Retour à la news
+		</a>
+	</p>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+srs_tag_index:
+    pattern:  /{id}
+    defaults: { _controller: SrsTagBundle:Tag:index }
+    requirements:
+        page:  \d+
+ 
+srs_tag_test:
+    pattern:  /test/
+    defaults: { _controller: SrsTagBundle:Tag:test }
