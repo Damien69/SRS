@@ -1,3 +1,11 @@
-srs_comment_add:
-    pattern:  /add/
-    defaults: { _controller: SrsCommentBundle:Comment:add }
+srs_comment_remove:
+    pattern:   /delete/{id}
+    defaults:  { _controller: SrsCommentBundle:Comment:remove}
+    requirements:
+        page:  \d+
+
+srs_comment_modify:
+    pattern:   /modify/{id}
+    defaults:  { _controller: SrsCommentBundle:Comment:modify}
+    requirements:
+        page:  \d+

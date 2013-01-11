@@ -59,7 +59,7 @@ class Comment
     {
         $this->autor = 'Damien';
         $this->dateCreation = new \Datetime;
-        $this->dateModification = new \Datetime;
+        $this->dateModification = null;
     }
     
 

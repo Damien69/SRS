@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Srs\NewsBundle\Entity\News;
 use Srs\TagBundle\Entity\Tag;
 use Srs\NewsBundle\Form\NewsType;
+use Srs\CommentBundle\Form\CommentType;
+use Srs\CommentBundle\Entity\Comment;
 
 /**
  * News controller.
@@ -30,11 +32,45 @@ class NewsController extends Controller
             'news' => $news
         ));
     }
-   
+    
+    public function homeAction(){
+        
+        $news = $this->getDoctrine()
+                        ->getEntityManager()
+                        ->getRepository('SrsNewsBundle:News')
+                        ->findby(array(),
+                                array('dateCreation' => 'desc'),
+                                2,
+                                0);
+        
+        return $this->render('SrsNewsBundle:News:index.html.twig', array(
+            'news' => $news
+        ));
+    }
+    
     public function showAction(News $news)
     {
+        $comment = new Comment();
+        $comment->setNews($news);
+        $request = $this->get('request');
+        $form = $this->createForm(new CommentType, $comment);
+        
+        if( $request->getMethod() == 'POST' )
+        {
+            $form->bind($request);
+            if( $form->isValid() )
+            {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($comment);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('srs_news_show', array('id' => $news->getId())));
+            }
+        }
+        
         return $this->render('SrsNewsBundle:News:show.html.twig', array(
-            'news' => $news
+            'form' => $form->createView(),
+            'news' => $news,
         ));
     }
     

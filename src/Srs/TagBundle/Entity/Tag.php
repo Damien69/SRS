@@ -104,4 +104,27 @@ class Tag
     {
         return $this->news;
     }
+
+    /**
+     * Add news
+     *
+     * @param \Srs\NewsBundle\Entity\News $news
+     * @return Tag
+     */
+    public function addNew(\Srs\NewsBundle\Entity\News $news)
+    {
+        $this->news[] = $news;
+    
+        return $this;
+    }
+
+    /**
+     * Remove news
+     *
+     * @param \Srs\NewsBundle\Entity\News $news
+     */
+    public function removeNew(\Srs\NewsBundle\Entity\News $news)
+    {
+        $this->news->removeElement($news);
+    }
 }

@@ -10,30 +10,9 @@ use Srs\CommentBundle\Form\CommentType;
 class CommentController extends Controller
 {
     
-    public function addAction()
-    {
-        $entity  = new Comment();
-        $request = $this->getRequest();
-        $form    = $this->createForm(new CommentType(), $entity);
-        $form->bindRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('srs_news_index'));
-            
-        }
-        return $this->render('SrsCommentBundle:Comment:add.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView()
-        ));
-    }
-    
-    public function modifyAction(Comment $news){
+    public function modifyAction(Comment $comment){
         
-        $form = $this->createForm(new CommentType, $news);
+        $form = $this->createForm(new CommentType, $comment);
         
         $request = $this->get('request');
         
@@ -43,37 +22,39 @@ class CommentController extends Controller
 
             if( $form->isValid() )
             {
-                $news->setDateModification(new \Datetime);
+                $comment->setDateModification(new \Datetime);
                 $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($news);
+                $em->persist($comment);
                 $em->flush();
-
+                
+                $news=$comment->getNews();
                 return $this->redirect($this->generateUrl('srs_news_show', array('id' => $news->getId())));
             }
         }
         
         return $this->render('SrsCommentBundle:Comment:modify.html.twig', array(
             'form' => $form->createView(),
-            'news' => $news,
+            'comment' => $comment,
         ));
     }
     
-    public function removeAction(Comment $news)
+    public function removeAction(Comment $comment)
     {
         if( $this->get('request')->getMethod() == 'POST' )
         {
             $em = $this->getDoctrine()->getEntityManager();
-            $em->remove($news);
+            $em->remove($comment);
             $em->flush();
 
-            $this->get('session')->setFlash('info', 'La news a bien supprimé');
-
-            return $this->redirect( $this->generateUrl('srs_news_index') );
+            $this->get('session')->setFlash('info', 'Le commentaire a bien supprimé');
+            
+            $news=$comment->getNews();
+            return $this->redirect($this->generateUrl('srs_news_show', array('id' => $news->getId())));
         }
         
         // Si la requête est en GET, on affiche une page de confirmation avant de supprimer.
         return $this->render('SrsCommentBundle:Comment:remove.html.twig', array(
-            'news' => $news
+            'comment' => $comment
         ));
     }
 }

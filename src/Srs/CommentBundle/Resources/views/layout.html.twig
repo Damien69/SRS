@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block title %}
-    Commentaire - {{ parent() }}
+    Blog - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -12,7 +12,7 @@
     <hr>
 
     {# On définit un nouveau block, que les vues du bundle pourront remplir #}
-    {% block srsnews_body %}
+    {% block srscomment_body %}
     {% endblock %}
 
 {% endblock %}
